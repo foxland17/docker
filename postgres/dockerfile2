@@ -1,0 +1,12 @@
+FROM alpine:latest 
+
+RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python \
+    && apk add --update --no-cache pip3 && ln -sf pip3 /usr/bin/pip3 \
+    && pip3 install flask
+
+#VOLUME volume /srv/app
+COPY volume /srv/app/ 
+WORKDIR /srv/app/
+CMD pwd\
+    &&ls -la\
+    &&python web.py

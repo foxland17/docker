@@ -1,0 +1,9 @@
+FROM python:3.10-slim-buster
+RUN mkdir -p /srv/app/conf \
+	&& apt-get update \
+	&& apt-get -y install libpq-dev  gcc \
+	&& rm -rf /var/lib/apt/lists/* \
+        && pip install  psycopg2 flask configparser
+COPY volume /srv/app/ 
+WORKDIR /srv/app/
+CMD python web.py
