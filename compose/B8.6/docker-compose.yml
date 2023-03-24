@@ -3,6 +3,11 @@ version: "3.9"
 services:
   php:
     build: .
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sS http://nginx | grep -c works > /dev/null "]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     
   nginx:
     image: "nginx:alpine"
